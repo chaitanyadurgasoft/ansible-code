@@ -12,7 +12,7 @@ resource "aws_instance" "testserver-1" {
   vpc_security_group_ids      = ["${aws_security_group.allow_tls.id}"]
   associate_public_ip_address = true
   tags = {
-    Name = "Master_01"
+    Name = "testserver-1"
   }
 }
 
@@ -24,7 +24,7 @@ resource "aws_instance" "testserver-2" {
   vpc_security_group_ids      = ["${aws_security_group.allow_tls.id}"]
   associate_public_ip_address = true
   tags = {
-    Name = "Master_02"
+    Name = "testserver-2"
   }
 }
 resource "aws_instance" "testserver-3" {
@@ -35,6 +35,6 @@ resource "aws_instance" "testserver-3" {
   vpc_security_group_ids      = ["${aws_security_group.allow_tls.id}"]
   associate_public_ip_address = true
   tags = {
-    Name = "Master_03"
+    Name = "testserver-3"
   }
 }
