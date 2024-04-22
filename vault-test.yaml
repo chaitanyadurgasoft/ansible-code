@@ -13,11 +13,11 @@
   tasks:
     - name: copy credentials
       copy: 
-      src: credentials
-      dest: /tmp/credentials
-      owner: root
-      group: root
-      mode: '0600'
+        src: credentials
+        dest: /tmp/credentials
+        owner: root
+        group: root
+        mode: '0600'
     - name: create a admin user
       user:
         name: anand
