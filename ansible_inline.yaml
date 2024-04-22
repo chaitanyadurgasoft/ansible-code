@@ -29,8 +29,8 @@
     - name: Replace line 'Pubkey yes' with 'Pubkey no'
       ansible.builtin.lineinfile:
         path: /etc/ssh/sshd_config
-        regexp: "^#PubkeyAuthentication yes"
-        line: "PubkeyAuthentication no"
+        regexp: "^PubkeyAuthentication no"
+        line: "PubkeyAuthentication yes"
         backup: yes
       notify:
         - Restart SSH Service
