@@ -13,9 +13,6 @@
         dest: /etc/ssh/sshd_config
         force: yes
       when: ansible_os_family == "{{ os1family }}"
-      notify:
-        - Restart SSH Service
-
     - name: Replace line 'PasswordAuthentication no' with 'PasswordAuthentication yes'
       ansible.builtin.lineinfile:
         path: /etc/ssh/sshd_config
