@@ -5,6 +5,7 @@
   vars:
     os1family: "Debian"
     os2family: "RedHat"
+    mypassword: india@1234
   tasks:
     - name: Copy sshd_config file
       copy:
@@ -23,6 +24,11 @@
         backup: yes
       notify:
         - Restart SSH Service
+    - name: change user password
+      ansible.builtin.user:
+        name: ubuntu
+        state: present
+        password: "{{ mypassword | password_hash('sha512') }}"
     - name: Replace line 'Pubkey yes' with 'Pubkey no'
       ansible.builtin.lineinfile:
         path: /etc/ssh/sshd_config
