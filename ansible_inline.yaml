@@ -1,0 +1,34 @@
+- name: Testing fileinline
+  hosts: testservers
+  become: yes
+  gather_facts: true
+  vars: 
+    os1family: "Debian"
+    os2family: "RedHat"
+  tasks:
+    - name: copying the sshd_config file
+      copy:
+        src: sshd_config
+        dest: /etc/ssh/sshd_config
+        force: yes
+      when: ansible_os_family == "{{ os1family }}"
+    - name: Replace the line passwod auth no to yes
+      ansible.builtin.lineinfile: 
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication no'
+        line: PasswordAuthentication yes
+        backup: yes
+      notify:
+      - Restart SSH Service
+    - name: Replace the line passwod auth no to yes
+      ansible.builtin.lineinfile: 
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication no'
+        line: PasswordAuthentication yes
+        backup: yes
+      notify:
+      - Restart SSH Service
+  handler:
+    - name: Restart SSH Service
+      shell: restart sshd service
+
