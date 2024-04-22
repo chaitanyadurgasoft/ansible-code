@@ -27,7 +27,7 @@
       ansible.builtin.lineinfile:
         path: /etc/ssh/sshd_config
         regexp: "^#PubkeyAuthentication yes"
-        line: "#PubkeyAuthentication no"
+        line: "PubkeyAuthentication no"
         backup: yes
       notify:
         - Restart SSH Service
