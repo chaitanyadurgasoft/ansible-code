@@ -1,5 +1,5 @@
 - name: Testing fileinline
-  hosts: testserver
+  hosts: testservers
   become: yes
   gather_facts: true
   vars:

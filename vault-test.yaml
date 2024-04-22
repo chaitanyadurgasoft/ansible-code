@@ -1,5 +1,5 @@
 - name: vault Testing
-  hosts: testserver
+  hosts: testservers
   become: yes
   gather_facts: yes
   vars:
