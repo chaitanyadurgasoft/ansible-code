@@ -3,28 +3,21 @@
   become: yes
   gather_facts: yes
   vars:
-    user_password: !vault |
-      $ANSIBLE_VAULT;1.1;AES256
-      35313763336438306637306337646330316166386534383739333636303733333764323164376636
-      3834613235393036613632656463333365393039633633350a623831316437613831613433303732
-      64343131326230313639353135353638376361323037303337393865343365633831363535633266
-      3239666637613930630a383261343761356436383761313439636335653166383335613464636533
-      3866
+    anandpassword: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          32386664383865646134363863373035303534376136626134393938633761373736313639353335
+          3363393934323639643561346466616362353931393332620a363533663735323938366665306264
+          38663666323264666465346535343162343434616532346232376632376538313135343266636533
+          3739643436653963340a333066663861373638646665313437653337653035613331663766356138
+          6565
   tasks:
-    - name: copy credentials
-      copy: 
-        src: credentials
-        dest: /tmp/credentials
-        owner: root
-        group: root
-        mode: '0600'
     - name: create a admin user
       user:
         name: anand
         state: present
         comment: admin user anand
         group: root
-        password: "{{ '%s'| format(user_password) | regex_replace('\n', '')|password_hash('sha512') }}"
+        password: "{{ '%s'| format(anandpassword) | regex_replace('\n', '')|password_hash('sha512') }}"
     - name: print the password
       debug:
         var: user_password
